@@ -4,6 +4,11 @@ import { useState } from "react";
 import { StepOne } from "@/components/StepOne";
 import { StepTwo } from "@/components/StepTwo";
 import { StepThree } from "@/components/StepThree";
+import { Inter } from "next/font/google";
+
+const inter = Inter({
+  subsets: ["latin"],
+});
 
 export default function Home() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -17,9 +22,22 @@ export default function Home() {
     password: "",
     confirmPassword: "",
     date: "",
-    image: null,
+    image: "",
   });
-  console.log(form?.image);
+
+  const [errors, setErrors] = useState({
+    firstname: "",
+    lastname: "",
+    username: "",
+    email: "",
+    phoneNumber: "",
+    password: "",
+    confirmPassword: "",
+    date: "",
+    image: "",
+  });
+  console.log(form.image);
+  
 
   const onChange = (e) => {
     const field = e.target.id;
@@ -27,53 +45,30 @@ export default function Home() {
     console.log(newValues);
     setForm(newValues);
   };
-  const numbers = "1234567890";
-  const checkForm = () => {
-    for (let i = 0; i < form?.firstname.length; i++) {
-      let char = form.firstname[i];
-      if (!numbers.includes(char)) {
-        for (let i = 0; i < form?.lastname.length; i++) {
-          let char = form.lastname[i];
-          if (!numbers.includes(char)) {
-            for (let i = 0; i < form?.username.length; i++) {
-              let char = form.username[i];
-              if (!numbers.includes(char)) {
-                return true;
-              }
-            }
-          }
-        }
-      } else return false;
-    }
-  };
 
   return (
-    <div className="">
+    <div className={`${inter.className}] `}>
       <FormBody
         currentStep={currentStep}
         setCurrentStep={setCurrentStep}
         form={form}
         onChange={onChange}
-        checkForm={checkForm}
+        errors = {errors}
+        setErrors= {setErrors}
       />
     </div>
   );
 }
 
-const FormBody = ({
-  currentStep,
-  setCurrentStep,
-  onChange,
-  form,
-  checkForm,
-}) => {
+const FormBody = ({ currentStep, setCurrentStep, onChange, form, errors, setErrors }) => {
   if (currentStep === 1) {
     return (
       <StepOne
         setCurrentStep={setCurrentStep}
         onChange={onChange}
         form={form}
-        checkForm={checkForm}
+        errors = {errors}
+        setErrors= {setErrors}
       />
     );
   } else if (currentStep === 2) {
@@ -82,6 +77,8 @@ const FormBody = ({
         setCurrentStep={setCurrentStep}
         onChange={onChange}
         form={form}
+        errors = {errors}
+        setErrors= {setErrors}
       />
     );
   } else if (currentStep === 3) {
@@ -90,6 +87,8 @@ const FormBody = ({
         setCurrentStep={setCurrentStep}
         onChange={onChange}
         form={form}
+        errors = {errors}
+        setErrors= {setErrors}
       />
     );
   }

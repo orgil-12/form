@@ -45,7 +45,7 @@ export const StepThree = ({ setCurrentStep, onChange, form }) => {
                 {/* <Calendar /> */}
               </div>
             </div>
-            <img src={imageSrc} className="w-[100px] h-[100px]" alt="" />
+            {/* <img src={imageSrc} className="w-[100px] h-[100px]" alt="" /> */}
             <div className={`flex  items-center justify-center w-full`}>
               <label
                 htmlFor="image"
