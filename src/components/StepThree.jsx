@@ -1,7 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Calendar } from "./Calendar";
 
 export const StepThree = ({ setCurrentStep, onChange, form }) => {
+  const [imageSrc, setImageSrc] = useState(""); // State to hold the image URL
+
+  useEffect(() => {
+    if (form?.image) {
+      const fileURL = URL.createObjectURL(form.image);
+      setImageSrc(fileURL);
+    }
+  }, [form?.image]);
+
+  console.log(imageSrc);
+
   return (
     <div className="w-screen h-screen flex items-center bg-slate-100">
       <div className="w-[480px] h-[655px] bg-white m-auto rounded-[8px] p-8 flex flex-col justify-between ">
@@ -34,8 +45,8 @@ export const StepThree = ({ setCurrentStep, onChange, form }) => {
                 {/* <Calendar /> */}
               </div>
             </div>
-
-            <div className={`flex items-center justify-center w-full`}>
+            <img src={imageSrc} className="w-[100px] h-[100px]" alt="" />
+            <div className={`flex  items-center justify-center w-full`}>
               <label
                 htmlFor="image"
                 className="flex flex-col items-center justify-center w-full h-[180px] rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"

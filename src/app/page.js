@@ -17,8 +17,9 @@ export default function Home() {
     password: "",
     confirmPassword: "",
     date: "",
-    image: "",
+    image: null,
   });
+  console.log(form?.image);
 
   const onChange = (e) => {
     const field = e.target.id;
@@ -26,23 +27,23 @@ export default function Home() {
     console.log(newValues);
     setForm(newValues);
   };
-    const numbers = "1234567890"
+  const numbers = "1234567890";
   const checkForm = () => {
     for (let i = 0; i < form?.firstname.length; i++) {
-      let char = form.firstname[i]
+      let char = form.firstname[i];
       if (!numbers.includes(char)) {
         for (let i = 0; i < form?.lastname.length; i++) {
-          let char = form.lastname[i]
+          let char = form.lastname[i];
           if (!numbers.includes(char)) {
             for (let i = 0; i < form?.username.length; i++) {
-              let char = form.username[i]
+              let char = form.username[i];
               if (!numbers.includes(char)) {
                 return true;
               }
             }
           }
         }
-      }else return false
+      } else return false;
     }
   };
 
