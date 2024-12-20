@@ -1,7 +1,19 @@
 import { Input } from "@/components/input";
 import { validateStepTwo } from "@/utils/validate";
-export const StepTwo = ({ setCurrentStep, onChange, form, errors, setErrors }) => {
-  console.log(errors)
+export const StepTwo = ({
+  setCurrentStep,
+  onChange,
+  form,
+  errors,
+  setErrors,
+}) => {
+  const isContinie =
+    form.email !== "" &&
+    form.phoneNumber !== "" &&
+    form.password !== "" &&
+    form.confirmPassword !== ""
+      ? "bg-black text-white"
+      : "bg-[#D6D8DB] text-[#A9ACAF]";
   return (
     <div className="w-screen h-screen flex items-center bg-slate-100  ">
       <div className="bg-white m-auto rounded-[8px] p-8 flex flex-col justify-between gap-[52px] ">
@@ -57,13 +69,13 @@ export const StepTwo = ({ setCurrentStep, onChange, form, errors, setErrors }) =
           </button>
           <button
             onClick={() => {
-                      const {isValid , newErrors} = validateStepTwo(form)
-                      setErrors(newErrors);
-                      if(isValid){
-                        setCurrentStep(3);
-                      }
-                    }}
-            className="bg-[#D6D8DB] px-[10px] w-[60%] py-3 rounded-[6px] text-[#A9ACAF] after:content-['>'] after:ml-3 "
+              const { isValid, newErrors } = validateStepTwo(form);
+              setErrors(newErrors);
+              if (isValid) {
+                setCurrentStep(3);
+              }
+            }}
+            className={`${isContinie} px-[10px] w-[60%] py-3 rounded-[6px] after:content-['>'] after:ml-3 `}
           >
             Continue 2/3
           </button>

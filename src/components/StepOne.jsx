@@ -8,6 +8,10 @@ export const StepOne = ({
   errors,
   setErrors,
 }) => {
+  const isContinie =
+    form.firstname !== "" && form.lastname !== "" && form.username !== ""
+      ? "bg-black text-white"
+      : "bg-[#D6D8DB] text-[#A9ACAF]";
   return (
     <div className="w-screen h-screen flex items-center bg-slate-100  ">
       <div className="w-[480px] h-[655px] bg-white m-auto rounded-[8px] p-8 flex flex-col justify-between">
@@ -49,15 +53,17 @@ export const StepOne = ({
             />
           </form>
         </div>
-        <div onClick={() => {
-          const {isValid , newErrors} = validateStepOne(form)
-          setErrors(newErrors);
-          if(isValid){
-            setCurrentStep(2);
-          }
-        }}>
+        <div
+          onClick={() => {
+            const { isValid, newErrors } = validateStepOne(form);
+            setErrors(newErrors);
+            if (isValid) {
+              setCurrentStep(2);
+            }
+          }}
+        >
           <button
-            className={`bg-[#D6D8DB] px-[10px] w-[100%] py-3 rounded-[6px] text-[#A9ACAF] after:content-['>'] after:ml-3`}
+            className={`${isContinie} px-[10px] w-[100%] py-3 rounded-[6px] after:content-['>'] after:ml-3`}
           >
             Continue 1/3
           </button>
