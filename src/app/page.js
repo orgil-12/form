@@ -4,6 +4,7 @@ import { useState } from "react";
 import { StepOne } from "@/components/StepOne";
 import { StepTwo } from "@/components/StepTwo";
 import { StepThree } from "@/components/StepThree";
+import { StepFour } from "@/components/StepFour";
 import { Inter } from "next/font/google";
 
 const inter = Inter({
@@ -41,7 +42,6 @@ export default function Home() {
   const onChange = (e) => {
     const field = e.target.id;
     const newValues = { ...form, [field]: e.target.value };
-    console.log(newValues);
     setForm(newValues);
   };
 
@@ -97,5 +97,7 @@ const FormBody = ({
         setErrors={setErrors}
       />
     );
+  } else {
+    return <StepFour />;
   }
 };

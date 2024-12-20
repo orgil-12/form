@@ -52,3 +52,7 @@ export const validateStepTwo = (form) => {
   }
   return { isValid, newErrors };
 };
+
+export const validateStepThree = () => {
+  let isValide = true;
+};

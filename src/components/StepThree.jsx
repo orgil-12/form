@@ -1,19 +1,21 @@
 import { useEffect, useState } from "react";
-import { Calendar } from "./Calendar";
 import { Input } from "@/components/input";
 import { ImageInput } from "./ImageInput";
+import { validateStepThree } from "@/utils/validate";
 
 export const StepThree = ({ setCurrentStep, onChange, form, errors }) => {
+  const [selectedImage, setSelectedImage] = useState("");
   const handleFileChange = (event) => {
-    const file = event.target.value;
-    console.log(file);
-    const image = URL.createObjectURL(file);
-    onChange(event)
+    const file = event.target.files[0];
+    if (!file) return;
+    setSelectedImage(URL.createObjectURL(file));
+    const fileEvent = { target: { value: file, id: event.target.id } };
+    onChange(fileEvent);
   };
 
   return (
     <div className="w-screen h-screen flex items-center bg-slate-100">
-      <div className="w-[480px] h-[655px] bg-white m-auto rounded-[8px] p-8 flex flex-col justify-between ">
+      <div className="w-[480px] bg-white m-auto rounded-[8px] p-8 flex flex-col justify-between gap-[100px] ">
         <div className=" flex flex-col gap-[28px] ">
           <div className=" ">
             <img src="Logo.svg" alt="" />
@@ -32,14 +34,20 @@ export const StepThree = ({ setCurrentStep, onChange, form, errors }) => {
               error={errors.date}
               type={"date"}
             />
-            <ImageInput
-              onChange={handleFileChange}
-              form={form}
-              id="image"
-              value={form?.image}
-              error={errors.image}
-              type={"file"}
-            />
+            {selectedImage ? (
+              <div>
+                <img src={selectedImage} alt="" />
+              </div>
+            ) : (
+              <ImageInput
+                onChange={handleFileChange}
+                form={form}
+                id="image"
+                value={form?.image}
+                error={errors.image}
+                type={"file"}
+              />
+            )}
           </form>
         </div>
         <div className="flex gap-2 w-[100%]">
@@ -49,7 +57,13 @@ export const StepThree = ({ setCurrentStep, onChange, form, errors }) => {
           >
             Back
           </button>
-          <button className="bg-[#D6D8DB] px-[10px] w-[60%] py-3 rounded-[6px] text-[#A9ACAF] after:content-['>'] after:ml-3 ">
+          <button
+            onClick={() => {
+              // const { isValide, newErrors } = validateStepThree(form);
+              setCurrentStep(4);
+            }}
+            className="bg-[#D6D8DB] px-[10px] w-[60%] py-3 rounded-[6px] text-[#A9ACAF] after:content-['>'] after:ml-3 "
+          >
             Continue 3/3
           </button>
         </div>
