@@ -1,17 +1,15 @@
 import { useEffect, useState } from "react";
 import { Calendar } from "./Calendar";
+import { Input } from "@/components/input";
+import { ImageInput } from "./ImageInput";
 
-export const StepThree = ({ setCurrentStep, onChange, form }) => {
-  const [imageSrc, setImageSrc] = useState(""); // State to hold the image URL
-
-  useEffect(() => {
-    if (form?.image) {
-      const fileURL = URL.createObjectURL(form.image);
-      setImageSrc(fileURL);
-    }
-  }, [form?.image]);
-
-  console.log(imageSrc);
+export const StepThree = ({ setCurrentStep, onChange, form, errors }) => {
+  const handleFileChange = (event) => {
+    const file = event.target.value;
+    console.log(file);
+    const image = URL.createObjectURL(file);
+    return;
+  };
 
   return (
     <div className="w-screen h-screen flex items-center bg-slate-100">
@@ -25,48 +23,23 @@ export const StepThree = ({ setCurrentStep, onChange, form }) => {
             </p>
           </div>
           <form action="" className="flex flex-col gap-3 ">
-            <div className="flex flex-col gap-2  ">
-              <label
-                htmlFor="date"
-                className="flex after:content-['*'] after:text-red-500 after:ml-1"
-              >
-                Date of birth
-              </label>
-              <div className="flex items-center border border-[#CBD5E1] hover:border-blue-400 rounded-[8px] px-3">
-                <input
-                  id="date"
-                  value={form.date}
-                  required
-                  type="date"
-                  className=" outline-none w-[100%]  p-3 "
-                  placeholder={`--/--/-- `}
-                  onChange={onChange}
-                />
-                {/* <Calendar /> */}
-              </div>
-            </div>
-            {/* <img src={imageSrc} className="w-[100px] h-[100px]" alt="" /> */}
-            <div className={`flex  items-center justify-center w-full`}>
-              <label
-                htmlFor="image"
-                className="flex flex-col items-center justify-center w-full h-[180px] rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
-              >
-                <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                  <img src="image.svg" alt="" />
-                  <p className="mb-2 text-sm text-[#09090B] dark:text-gray-400">
-                    Add image
-                  </p>
-                </div>
-                <input
-                  id="image"
-                  value={form.image}
-                  required
-                  type="file"
-                  className="hidden"
-                  onChange={onChange}
-                />
-              </label>
-            </div>
+            <Input
+              label={"Date of birth"}
+              onChange={onChange}
+              form={form}
+              id="date"
+              value={form?.date}
+              error={errors.date}
+              type={"date"}
+            />
+            <ImageInput
+              onChange={handleFileChange}
+              form={form}
+              id="image"
+              value={form?.image}
+              error={errors.image}
+              type={"file"}
+            />
           </form>
         </div>
         <div className="flex gap-2 w-[100%]">

@@ -37,7 +37,6 @@ export default function Home() {
     image: "",
   });
   console.log(form.image);
-  
 
   const onChange = (e) => {
     const field = e.target.id;
@@ -53,22 +52,29 @@ export default function Home() {
         setCurrentStep={setCurrentStep}
         form={form}
         onChange={onChange}
-        errors = {errors}
-        setErrors= {setErrors}
+        errors={errors}
+        setErrors={setErrors}
       />
     </div>
   );
 }
 
-const FormBody = ({ currentStep, setCurrentStep, onChange, form, errors, setErrors }) => {
+const FormBody = ({
+  currentStep,
+  setCurrentStep,
+  onChange,
+  form,
+  errors,
+  setErrors,
+}) => {
   if (currentStep === 1) {
     return (
       <StepOne
         setCurrentStep={setCurrentStep}
         onChange={onChange}
         form={form}
-        errors = {errors}
-        setErrors= {setErrors}
+        errors={errors}
+        setErrors={setErrors}
       />
     );
   } else if (currentStep === 2) {
@@ -77,8 +83,8 @@ const FormBody = ({ currentStep, setCurrentStep, onChange, form, errors, setErro
         setCurrentStep={setCurrentStep}
         onChange={onChange}
         form={form}
-        errors = {errors}
-        setErrors= {setErrors}
+        errors={errors}
+        setErrors={setErrors}
       />
     );
   } else if (currentStep === 3) {
@@ -87,8 +93,8 @@ const FormBody = ({ currentStep, setCurrentStep, onChange, form, errors, setErro
         setCurrentStep={setCurrentStep}
         onChange={onChange}
         form={form}
-        errors = {errors}
-        setErrors= {setErrors}
+        errors={errors}
+        setErrors={setErrors}
       />
     );
   }
