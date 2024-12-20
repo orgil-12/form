@@ -1,4 +1,4 @@
-export const ImageInput = (onChange, error, value) => {
+export const ImageInput = ({onChange, error, value}) => {
   return (
     <div className={`flex  items-center justify-center w-full`}>
       <label

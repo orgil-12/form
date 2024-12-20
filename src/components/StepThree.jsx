@@ -8,7 +8,7 @@ export const StepThree = ({ setCurrentStep, onChange, form, errors }) => {
     const file = event.target.value;
     console.log(file);
     const image = URL.createObjectURL(file);
-    return;
+    onChange(event)
   };
 
   return (
