@@ -13,7 +13,7 @@ export const Input = ({ label, id, onChange, error, type, value }) => {
         value={value}
         required
         type={type}
-        className={`border  outline-none focus:border-blue-400 w-[100%] rounded-[8px] p-3 `}
+        className={`border ${borderColor}  outline-none focus:border-blue-400 w-[100%] rounded-[8px] p-3 `}
         placeholder="Placeholder"
         onChange={onChange}
       />
