@@ -48,7 +48,7 @@ export const StepTwo = ({
               id="password"
               value={form?.password}
               error={errors.password}
-              type={"text"}
+              type={"password"}
             />
             <Input
               label={"Confirm Password"}
@@ -56,7 +56,7 @@ export const StepTwo = ({
               id="confirmPassword"
               value={form?.confirmPassword}
               error={errors.confirmPassword}
-              type={"text"}
+              type={"password"}
             />
           </form>
         </div>
