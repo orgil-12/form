@@ -1,4 +1,5 @@
 export const Input = ({ label, id, onChange, error, type, value }) => {
+  const borderColor = error !== "" ? "border-red-500" : "border-[#CBD5E1]";
   return (
     <div className="flex flex-col gap-2 ">
       <label
@@ -12,7 +13,7 @@ export const Input = ({ label, id, onChange, error, type, value }) => {
         value={value}
         required
         type={type}
-        className="border border-[#CBD5E1] outline-none focus:border-blue-400 w-[100%] rounded-[8px] p-3 "
+        className={`border  outline-none focus:border-blue-400 w-[100%] rounded-[8px] p-3 `}
         placeholder="Placeholder"
         onChange={onChange}
       />

@@ -37,7 +37,6 @@ export default function Home() {
     date: "",
     image: "",
   });
-  console.log(form.image);
 
   const onChange = (e) => {
     const field = e.target.id;

@@ -2,16 +2,25 @@ import { useEffect, useState } from "react";
 import { Input } from "@/components/input";
 import { ImageInput } from "./ImageInput";
 import { validateStepThree } from "@/utils/validate";
+import { RemoveSVG } from "./RemoveSVG";
 
 export const StepThree = ({ setCurrentStep, onChange, form, errors }) => {
   const [selectedImage, setSelectedImage] = useState("");
   const handleFileChange = (event) => {
-    const file = event.target.files[0];
+    const file = event?.target?.files[0];
     if (!file) return;
-    setSelectedImage(URL.createObjectURL(file));
-    const fileEvent = { target: { value: file, id: event.target.id } };
+    const objUrl = URL.createObjectURL(file);
+    setSelectedImage(objUrl);
+    const fileEvent = {
+      target: { value: file, id: event.target.id },
+    };
     onChange(fileEvent);
   };
+
+  const isContinie =
+    (form.date !== "") & (form.image !== "")
+      ? "bg-black text-white"
+      : "bg-[#D6D8DB] text-[#A9ACAF]";
 
   return (
     <div className="w-screen h-screen flex items-center bg-slate-100">
@@ -35,8 +44,16 @@ export const StepThree = ({ setCurrentStep, onChange, form, errors }) => {
               type={"date"}
             />
             {selectedImage ? (
-              <div>
+              <div className="relative">
                 <img src={selectedImage} alt="" />
+                <div
+                  onClick={() => {
+                    setSelectedImage("");
+                  }}
+                  className="absolute top-4 right-4"
+                >
+                  <RemoveSVG />
+                </div>
               </div>
             ) : (
               <ImageInput
@@ -62,7 +79,7 @@ export const StepThree = ({ setCurrentStep, onChange, form, errors }) => {
               // const { isValide, newErrors } = validateStepThree(form);
               setCurrentStep(4);
             }}
-            className="bg-[#D6D8DB] px-[10px] w-[60%] py-3 rounded-[6px] text-[#A9ACAF] after:content-['>'] after:ml-3 "
+            className={`${isContinie} px-[10px] w-[60%] py-3 rounded-[6px] after:content-['>'] after:ml-3 `}
           >
             Continue 3/3
           </button>

@@ -33,7 +33,6 @@ export const validateStepTwo = (form) => {
     password: "",
     confirmPassword: "",
   };
-  console.log(newErrors);
   if (!form.email.match("[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$")) {
     isValid = false;
     newErrors.email = "Please provide a valid email address.";
@@ -54,5 +53,17 @@ export const validateStepTwo = (form) => {
 };
 
 export const validateStepThree = () => {
-  let isValide = true;
+  let isValid = true;
+  let newErrors = {
+    date: "",
+    image: "",
+  };
+  if (form.date === "") {
+    isValid = false;
+    newErrors.date = "Please select a date.";
+  }
+  if (form.image === "") {
+    isValid = false;
+    newErrors.image = "Image cannot be blank.";
+  }
 };
